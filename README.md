@@ -1,6 +1,6 @@
 # ALWithDecisionTrees
 ## Before running the model
-Run 
+The start sets and the molecular descriptors need to be defined before running the model. To create the files used in the model, run: 
 ```
 create_start_set.py "descriptor_type" "data"
 ```
