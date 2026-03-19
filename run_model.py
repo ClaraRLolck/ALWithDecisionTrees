@@ -99,12 +99,10 @@ def train_run_model(start_n, n_add, iter, data, model = "RF", acq_model="greedy"
 
 from multiprocessing import Pool
 
-#ALDH1, PKM2 or VDR
-data = 'ALDH1'
-# 1024, 512, desc, MACCS,MQN
-type = '1024'
+type = sys.argv[1]
+data = sys.argv[2]
 
-acc_size = 20
+acc_size = sys.argv[3]
 n_iter = 100//acc_size
 
 with open(os.path.join( f'Data/'+data+'/'+data+'_actives_smiles'+type+'.smi')) as f:

@@ -4,8 +4,10 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 import json
 import os
-data = 'PKM2'
-type = ''
+
+
+type = sys.argv[1]
+data = sys.argv[2]
 np.set_printoptions(threshold=sys.maxsize)
 with open(os.path.join( f'Data/'+data+'/'+data+'_actives_smiles'+type+'.smi')) as f:
     actives=pd.DataFrame([[lines.split(':')[0],pd.Series(json.loads(lines.split(':')[1])),1] for lines in f], columns=['Smile','FingerPrint','Active'])

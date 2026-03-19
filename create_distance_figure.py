@@ -18,12 +18,12 @@ import matplotlib.font_manager as fm
 
 np.set_printoptions(threshold=sys.maxsize)
 
-data = 'ALDH1'
-desc = '1024'
-n_add= 2
+desc = sys.argv[1]
+data = sys.argv[2]
+n_add = sys.argv[3]
 model = 'RF'
 acq_model = 'greedy'
-mol = 5
+mol =sys.argv[4]
 
 clf = load("Data/decision_tree_" + data + "_" + desc + ".joblib")
 with open('Data/distanceMatrixDecisionTree_'+data+'_'+desc+'.npy', 'rb') as f:
@@ -41,7 +41,6 @@ X = pd.DataFrame(all_mol["desc"].tolist())
 y = all_mol["Active"]
 
 def find_closest_leaf(target_id, number_of_leafs, only_active=True, list_id = list_id,clf = clf, distance_matrix = distance_matrix):
-
     list_id = np.array(list_id)
     values = clf.tree_.value
 
@@ -115,7 +114,7 @@ for it_idx, s in zip(iteration_idx, aquired_mols):
 aquired_mols_index = [find_index(smile) for smile in aquired_mols]
 cluster_sizes = [sizes[id] for id in range(len(clf.tree_.n_node_samples))]
 
-
+#Save all edges
 unique_clusters = list(dict.fromkeys([x for x,y in relevant_clusters]))
 cluster_edges = []
 for i,j in itertools.combinations(unique_clusters, 2):
@@ -128,8 +127,11 @@ cluster_edges = list(dict.fromkeys([x for x in cluster_edges]))
 
 
 start_cluster = relevant_clusters[0][0]
+#List the most important edges for the figure
+#The first 5 leaves found
 important_cluster_edges = cluster_edges[:5]
 temp_cluster_list = important_cluster_edges
+#The 10 largest clusters
 important_cluster_edges2=sorted(temp_cluster_list, key=lambda x: x[2])[:10]
 rest_of_clusters = cluster_edges[5:]
 

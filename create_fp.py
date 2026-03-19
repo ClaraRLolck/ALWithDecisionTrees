@@ -24,13 +24,13 @@ def toBit(smile, desc):
 
   return fp_arr
 
-desc = "1024"
-data = 'ALDH1'
+type = sys.argv[1]
+data = sys.argv[2]
 with open(os.path.join( f'Data/'+data+'/actives.smi')) as f:
-  new_f=open('Data/'+data+'/'+data+'_actives_smiles'+desc+'.smi','a')
+  new_f=open('Data/'+data+'/'+data+'_actives_smiles'+type+'.smi','a')
   for smile in f.readlines():
-    new_f.write(str((smile.strip().split()[0])+":"+str((toBit(smile.strip().split()[0],desc)).tolist())+"\n"))
+    new_f.write(str((smile.strip().split()[0])+":"+str((toBit(smile.strip().split()[0],type)).tolist())+"\n"))
 with open(os.path.join( f'Data/'+data+'/inactives.smi')) as f:
-  new_f=open('Data/'+data+'/'+data+'_inactives_smiles'+desc+'.smi','a')
+  new_f=open('Data/'+data+'/'+data+'_inactives_smiles'+type+'.smi','a')
   for smile in f.readlines():
-    new_f.write(str((smile.strip().split()[0])+":"+str((toBit(smile.strip().split()[0],desc)).tolist())+"\n"))
+    new_f.write(str((smile.strip().split()[0])+":"+str((toBit(smile.strip().split()[0],type)).tolist())+"\n"))
