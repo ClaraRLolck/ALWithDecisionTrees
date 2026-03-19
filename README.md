@@ -26,13 +26,13 @@ This creates the decision tree and a distance Matrix made from the tree. These a
 ### Create figures
 To create a scatterplot of the size and depth of the active leaves in the decision tree, run:
 ```
-create_scatter_figure.py "descriptor_type" "data" acc_size
+figure_scatter.py "descriptor_type" "data" acc_size
 ```
 This prints the scatterplot, which is created by default for the Random Forest and the Greedy acquisition function results, but this can be changed in the code. The leaves that contribute most to the number of active molecules found per start set are marked in red in the scatterplot. Besides this, the leaf ID, start set ID, size, and depth are printed for the leaves with the largest contribution to the number of found active molecules per start set.
 
 The distance figure is created by:
 ```
-create_distance_figure.py "descriptor_type" "data" acc_size start_set_number
+figure_distance.py "descriptor_type" "data" acc_size start_set_number
 ```
 The start set is numbered from 0 to 9, and the figure is created for a specific run. This returns a figure of the active leaves visited in the run, how many molecules are found in the leaf, and the distance between these leaves. It also prints a plot of the number of found active molecules per iteration for the run.
 
